@@ -7,5 +7,5 @@ struct PixelIN
 
 float4 main(PixelIN IN) : SV_TARGET
 {
-    return float4(float3(0.2, 0.2, 0.895), 1.0f);
+    return float4(float3(IN.WorldPosition.yyy), 1.0f);
 }

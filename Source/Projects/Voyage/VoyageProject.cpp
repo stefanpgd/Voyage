@@ -11,6 +11,7 @@ VoyageProject::VoyageProject()
 void VoyageProject::Update(float deltaTime)
 {
 	scene->Update(deltaTime);
+	waterRenderStage->Update(deltaTime);
 }
 
 void VoyageProject::Render(ComPtr<ID3D12GraphicsCommandList4> commandList)

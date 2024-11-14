@@ -10,6 +10,11 @@ WaterRenderStage::WaterRenderStage(Scene* activeScene) : activeScene(activeScene
 	InitializePipeline();
 }
 
+void WaterRenderStage::Update(float deltaTime)
+{
+	waterSettings.time += deltaTime;
+}
+
 void WaterRenderStage::RecordStage(ComPtr<ID3D12GraphicsCommandList4> commandList)
 {
 	if(!activeScene)
@@ -27,6 +32,7 @@ void WaterRenderStage::RecordStage(ComPtr<ID3D12GraphicsCommandList4> commandLis
 
 	commandList->SetGraphicsRoot32BitConstants(0, 16, &MVP, 0);
 	commandList->SetGraphicsRoot32BitConstants(0, 16, &modelMatrix, 16);
+	commandList->SetGraphicsRoot32BitConstants(1, 1, &waterSettings, 0);
 
 	std::vector<Mesh*> meshes = waterPlane->GetMeshes();
 	for(Mesh* mesh : meshes)
@@ -39,8 +45,9 @@ void WaterRenderStage::RecordStage(ComPtr<ID3D12GraphicsCommandList4> commandLis
 
 void WaterRenderStage::InitializePipeline()
 {
-	CD3DX12_ROOT_PARAMETER1 rootParameters[1];
+	CD3DX12_ROOT_PARAMETER1 rootParameters[2];
 	rootParameters[0].InitAsConstants(32, 0, 0, D3D12_SHADER_VISIBILITY_VERTEX); // MVP, Model
+	rootParameters[1].InitAsConstants(1, 1, 0, D3D12_SHADER_VISIBILITY_VERTEX); // MVP, Model
 
 	rootSignature = new DXRootSignature(rootParameters, _countof(rootParameters), D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
 
