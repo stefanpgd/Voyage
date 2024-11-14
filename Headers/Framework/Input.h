@@ -32,7 +32,8 @@ enum class KeyCode
 
 	Shift = ImGuiKey::ImGuiKey_ModShift,
 	Ctrl = ImGuiKey::ImGuiKey_ModCtrl,
-	Escape = ImGuiKey::ImGuiKey_Escape
+	Escape = ImGuiKey::ImGuiKey_Escape,
+	Space = ImGuiKey::ImGuiKey_Space
 };
 
 enum class MouseCode

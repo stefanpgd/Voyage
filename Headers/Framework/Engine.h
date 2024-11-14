@@ -28,9 +28,7 @@ private:
 	static LRESULT CALLBACK WindowsCallback(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 private:
-	// TODO: Add reference to active project
-
-	std::wstring frameworkName = L"Steel";
+	std::wstring frameworkName = L"Steel - Voyage";
 	bool runEngine = true;
 
 	unsigned int windowWidth = 1080;

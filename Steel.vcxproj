@@ -128,13 +128,15 @@
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Graphics\TextureManager.cpp" />
     <ClCompile Include="Source\Projects\TinyHybrid\TinyHybridProject.cpp" />
+    <ClCompile Include="Source\Projects\Voyage\VoyageProject.cpp" />
+    <ClCompile Include="Source\Projects\Voyage\WaterRenderStage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Projects\TinyHybrid\BlendResultStage.h" />
     <ClInclude Include="Headers\Graphics\Camera.h" />
     <ClInclude Include="Headers\Framework\Scene.h" />
     <ClInclude Include="Headers\Graphics\DXComponents.h" />
-    <ClInclude Include="Headers\Graphics\DXObject.h" />
+    <ClInclude Include="Headers\Graphics\DXObjects.h" />
     <ClInclude Include="Headers\Graphics\DXR\DXRayTracingUtilities.h" />
     <ClInclude Include="Headers\Graphics\DXR\DXRayTracingPipeline.h" />
     <ClInclude Include="Headers\Graphics\DXR\DXShaderBindingTable.h" />
@@ -182,6 +184,8 @@
     <ClInclude Include="Headers\Projects\HelloCompute\HelloComputeProject.h" />
     <ClInclude Include="Headers\Projects\TinyHybrid\SimpleRenderStage.h" />
     <ClInclude Include="Headers\Projects\TinyHybrid\RTShadowsStage.h" />
+    <ClInclude Include="Headers\Projects\Voyage\VoyageProject.h" />
+    <ClInclude Include="Headers\Projects\Voyage\WaterRenderStage.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Dependencies\Microsoft\d3dcompiler_47.dll">
@@ -240,6 +244,18 @@
     <FxCompile Include="Source\Shaders\TinyHybrid\simpleRasterizer.vertex.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Source\Shaders\Water\water.pixel.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Source\Shaders\Water\water.vertex.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
     </FxCompile>

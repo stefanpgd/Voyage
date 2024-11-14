@@ -6,7 +6,7 @@ class Camera
 public: 
 	Camera(glm::vec3 position = glm::vec3(0.0f, 1.0f, 4.0f));
 
-	void Update();
+	void Update(float deltaTime);
 
 	void UpdateViewMatrix();
 	void ResizeProjectionMatrix(int windowWidth, int windowHeight);

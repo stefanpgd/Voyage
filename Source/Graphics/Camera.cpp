@@ -9,8 +9,12 @@ Camera::Camera(glm::vec3 position) : Position(position)
 	ResizeProjectionMatrix(DXAccess::GetWindow()->GetWindowWidth(), DXAccess::GetWindow()->GetWindowHeight());
 }
 
-void Camera::Update()
+void Camera::Update(float deltaTime)
 {
+	int vertical = Input::GetKey(KeyCode::E) - Input::GetKey(KeyCode::Q);
+	float speed = 5.0f * deltaTime;
+	Position.y += speed * vertical;
+
 	UpdateViewMatrix();
 }
 
