@@ -5,10 +5,14 @@
 class Scene;
 class Mesh;
 class DXPipeline;
+class DXBuffer;
 
 struct WaterSettings
 {
-	float time;
+	float amplitude = 0.4f;
+	float frequency = 2.0f;
+	float phase = 2.0f;
+	float time = 0.0f;
 };
 
 class WaterRenderStage : public RenderStage
@@ -25,7 +29,9 @@ private:
 
 private:
 	Scene* activeScene;
+
 	WaterSettings waterSettings;
+	DXBuffer* waterSettingsBuffer;
 
 	DXPipeline* waterRenderPipeline;
 	Mesh* waterTestPlane;

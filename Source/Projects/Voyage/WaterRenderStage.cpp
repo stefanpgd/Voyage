@@ -1,17 +1,33 @@
 #include "Projects/Voyage/WaterRenderStage.h"
 #include "Graphics/DXObjects.h"
 #include "Graphics/DXComponents.h"
+#include "Graphics/DXBuffer.h"
 #include "Framework/Scene.h"
+#include <imgui.h>
 
 WaterRenderStage::WaterRenderStage(Scene* activeScene) : activeScene(activeScene)
 {
 	InitializePipeline();
 	GenerateWaterPlane();
+
+	DXBufferProperties properties;
+	properties.isConstantBuffer = false;
+	properties.isStructuredBuffer = true;
+	properties.isCPUAccessible = true;
+
+	waterSettingsBuffer = new DXBuffer(properties, &waterSettings, 1, sizeof(WaterSettings));
 }
 
 void WaterRenderStage::Update(float deltaTime)
 {
+	ImGui::Begin("Water Settings");
+	ImGui::DragFloat("Amplitude", &waterSettings.amplitude, 0.01f);
+	ImGui::DragFloat("Frequency", &waterSettings.frequency, 0.01f);
+	ImGui::DragFloat("Phase", &waterSettings.phase, 0.01f);
+	ImGui::End();
+
 	waterSettings.time += deltaTime;
+	waterSettingsBuffer->UpdateData(&waterSettings);
 }
 
 void WaterRenderStage::RecordStage(ComPtr<ID3D12GraphicsCommandList4> commandList)
@@ -30,7 +46,7 @@ void WaterRenderStage::RecordStage(ComPtr<ID3D12GraphicsCommandList4> commandLis
 
 	commandList->SetGraphicsRoot32BitConstants(0, 16, &MVP, 0);
 	commandList->SetGraphicsRoot32BitConstants(0, 16, &modelMatrix, 16);
-	commandList->SetGraphicsRoot32BitConstants(1, 1, &waterSettings, 0);
+	commandList->SetGraphicsRootShaderResourceView(1, waterSettingsBuffer->GetGPUVirtualAddress());
 
 	commandList->IASetVertexBuffers(0, 1, &waterTestPlane->GetVertexBufferView());
 	commandList->IASetIndexBuffer(&waterTestPlane->GetIndexBufferView());
@@ -91,7 +107,7 @@ void WaterRenderStage::InitializePipeline()
 {
 	CD3DX12_ROOT_PARAMETER1 rootParameters[2];
 	rootParameters[0].InitAsConstants(32, 0, 0, D3D12_SHADER_VISIBILITY_VERTEX); // MVP, Model
-	rootParameters[1].InitAsConstants(1, 1, 0, D3D12_SHADER_VISIBILITY_VERTEX); // MVP, Model
+	rootParameters[1].InitAsShaderResourceView(0, 0);
 
 	rootSignature = new DXRootSignature(rootParameters, _countof(rootParameters), D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
 
