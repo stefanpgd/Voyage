@@ -11,9 +11,14 @@ Camera::Camera(glm::vec3 position) : Position(position)
 
 void Camera::Update(float deltaTime)
 {
+	int horizontal = Input::GetKey(KeyCode::D) - Input::GetKey(KeyCode::A);
 	int vertical = Input::GetKey(KeyCode::E) - Input::GetKey(KeyCode::Q);
+	int forward = Input::GetKey(KeyCode::S) - Input::GetKey(KeyCode::W);
+
 	float speed = 5.0f * deltaTime;
+	Position.x += speed * horizontal;
 	Position.y += speed * vertical;
+	Position.z += speed * forward;
 
 	UpdateViewMatrix();
 }
