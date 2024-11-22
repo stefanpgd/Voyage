@@ -88,17 +88,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Projects\TinyHybrid\BlendResultStage.cpp" />
-    <ClCompile Include="Source\Projects\TinyHybrid\RTShadowsStage.cpp" />
+    <ClCompile Include="Source\Graphics\DXBuffer.cpp" />
     <ClCompile Include="Source\Graphics\Camera.cpp" />
-    <ClCompile Include="Source\Projects\TinyHybrid\SimpleRenderStage.cpp" />
     <ClCompile Include="Source\Framework\Scene.cpp" />
     <ClCompile Include="Source\Graphics\DXR\DXRayTracingPipeline.cpp" />
     <ClCompile Include="Source\Graphics\DXR\DXShaderBindingTable.cpp" />
     <ClCompile Include="Source\Graphics\DXR\DXTLAS.cpp" />
-    <ClCompile Include="Source\Projects\HelloCompute\ComputeUVStage.cpp" />
     <ClCompile Include="Dependencies\tinyglTF\tiny_gltf.cpp" />
-    <ClCompile Include="Source\Projects\HelloCompute\HelloComputeProject.cpp" />
     <ClCompile Include="Source\Graphics\Model.cpp" />
     <ClCompile Include="Source\Framework\Input.cpp" />
     <ClCompile Include="Source\Framework\Editor.cpp" />
@@ -109,9 +105,7 @@
     <ClCompile Include="Dependencies\ImGui\imgui_impl_win32.cpp" />
     <ClCompile Include="Dependencies\ImGui\imgui_tables.cpp" />
     <ClCompile Include="Dependencies\ImGui\imgui_widgets.cpp" />
-    <ClCompile Include="Source\Graphics\DXUploadBuffer.cpp" />
     <ClCompile Include="Source\Graphics\RenderStage.cpp" />
-    <ClCompile Include="Source\Graphics\DXStructuredBuffer.cpp" />
     <ClCompile Include="Source\Graphics\DXComputePipeline.cpp" />
     <ClCompile Include="Source\Graphics\DepthBuffer.cpp" />
     <ClCompile Include="Source\Graphics\DXCommands.cpp" />
@@ -127,12 +121,11 @@
     <ClCompile Include="Source\Framework\Engine.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Graphics\TextureManager.cpp" />
-    <ClCompile Include="Source\Projects\TinyHybrid\TinyHybridProject.cpp" />
     <ClCompile Include="Source\Projects\Voyage\VoyageProject.cpp" />
     <ClCompile Include="Source\Projects\Voyage\WaterRenderStage.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Headers\Projects\TinyHybrid\BlendResultStage.h" />
+    <ClInclude Include="Headers\Graphics\DXBuffer.h" />
     <ClInclude Include="Headers\Graphics\Camera.h" />
     <ClInclude Include="Headers\Framework\Scene.h" />
     <ClInclude Include="Headers\Graphics\DXComponents.h" />
@@ -142,12 +135,9 @@
     <ClInclude Include="Headers\Graphics\DXR\DXShaderBindingTable.h" />
     <ClInclude Include="Headers\Graphics\DXR\DXTLAS.h" />
     <ClInclude Include="Headers\Graphics\Material.h" />
-    <ClInclude Include="Headers\Projects\HelloCompute\ComputeUVStage.h" />
     <ClInclude Include="Headers\Framework\Editor.h" />
     <ClInclude Include="Headers\Graphics\DXCommon.h" />
-    <ClInclude Include="Headers\Graphics\DXUploadBuffer.h" />
     <ClInclude Include="Headers\Graphics\Extensions\Mesh_TinyglTF.h" />
-    <ClInclude Include="Headers\Projects\TinyHybrid\TinyHybridProject.h" />
     <ClInclude Include="Headers\Utilities\EditorElements.h" />
     <ClInclude Include="Headers\Utilities\Random.h" />
     <ClInclude Include="Dependencies\ImGui\imconfig.h" />
@@ -158,7 +148,6 @@
     <ClInclude Include="Dependencies\ImGui\imstb_rectpack.h" />
     <ClInclude Include="Dependencies\ImGui\imstb_textedit.h" />
     <ClInclude Include="Dependencies\ImGui\imstb_truetype.h" />
-    <ClInclude Include="Headers\Graphics\DXStructuredBuffer.h" />
     <ClInclude Include="Headers\Graphics\DXComputePipeline.h" />
     <ClInclude Include="Headers\Framework\Engine.h" />
     <ClInclude Include="Headers\Graphics\DepthBuffer.h" />
@@ -181,9 +170,6 @@
     <ClInclude Include="Headers\Graphics\Model.h" />
     <ClInclude Include="Headers\Graphics\TextureManager.h" />
     <ClInclude Include="Headers\Framework\Project.h" />
-    <ClInclude Include="Headers\Projects\HelloCompute\HelloComputeProject.h" />
-    <ClInclude Include="Headers\Projects\TinyHybrid\SimpleRenderStage.h" />
-    <ClInclude Include="Headers\Projects\TinyHybrid\RTShadowsStage.h" />
     <ClInclude Include="Headers\Projects\Voyage\VoyageProject.h" />
     <ClInclude Include="Headers\Projects\Voyage\WaterRenderStage.h" />
   </ItemGroup>
@@ -204,48 +190,6 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compute</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="Source\Shaders\TinyHybrid\blendResults.compute.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compute</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Compute</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="Source\Shaders\TinyHybrid\ClosestHit.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Library</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">6.3</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Library</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">6.3</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="Source\Shaders\TinyHybrid\Common.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Library</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">6.3</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Library</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">6.3</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="Source\Shaders\TinyHybrid\Miss.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Library</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">6.3</ShaderModel>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Library</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">6.3</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="Source\Shaders\TinyHybrid\RayGen.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Library</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Library</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">6.3</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">6.3</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="Source\Shaders\TinyHybrid\simpleRasterizer.pixel.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="Source\Shaders\TinyHybrid\simpleRasterizer.vertex.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
     </FxCompile>
     <FxCompile Include="Source\Shaders\Water\water.pixel.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>

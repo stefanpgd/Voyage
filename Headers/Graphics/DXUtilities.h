@@ -16,6 +16,8 @@
 #include "Graphics/DXDescriptorHeap.h"
 #include "Window.h"
 
+#define ALIGN(_alignment, _val) (((_val + _alignment - 1) / _alignment) * _alignment)
+
 inline void ThrowIfFailed(HRESULT hr)
 {
 	if(FAILED(hr))

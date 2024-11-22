@@ -2,8 +2,8 @@
 #include "Graphics/DXAccess.h"
 #include "Graphics/DXUtilities.h"
 #include "Graphics/DXR/DXRayTracingUtilities.h"
-#include "Graphics/DXUploadBuffer.h"
 #include "Graphics/Texture.h"
+#include "Graphics/DXBuffer.h"
 #include "Graphics/DXCommands.h"
 #include "Framework/Mathematics.h"
 #include <cassert>
@@ -32,7 +32,14 @@ Mesh::Mesh(tinygltf::Model& model, tinygltf::Primitive& primitive, glm::mat4& tr
 	}
 
 	// Material & Texture Data //
-	materialBuffer = new DXUploadBuffer(&Material, sizeof(Material));
+	// Material & Texture Data //
+	DXBufferProperties bufferProperties;
+	bufferProperties.name = "Material Buffer";
+	bufferProperties.isConstantBuffer = false;
+	bufferProperties.isCPUAccessible = true;
+	bufferProperties.isStructuredBuffer = true;
+
+	materialBuffer = new DXBuffer(bufferProperties, &Material, 1, sizeof(Material));
 	LoadTextures(model, primitive);
 }
 

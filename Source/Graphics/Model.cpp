@@ -1,7 +1,6 @@
 #include "Graphics/Model.h"
 #include "Graphics/Mesh.h"
 #include "Graphics/DXR/DXRayTracingUtilities.h"
-#include "Graphics/DXUploadBuffer.h"
 
 #include "Utilities/Logger.h"
 

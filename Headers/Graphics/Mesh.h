@@ -10,7 +10,7 @@
 #include <tiny_gltf.h>
 
 class Texture;
-class DXUploadBuffer;
+class DXBuffer;
 
 struct Vertex
 {
@@ -70,7 +70,7 @@ private:
 	unsigned int indicesCount = 0;
 
 	// Texture & Material Data //
-	DXUploadBuffer* materialBuffer;
+	DXBuffer* materialBuffer;
 
 	// Ray Tracing //
 	bool isRayTracingGeometry;

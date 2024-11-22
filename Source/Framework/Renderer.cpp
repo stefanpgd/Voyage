@@ -171,6 +171,50 @@ DXDescriptorHeap* DXAccess::GetDescriptorHeap(D3D12_DESCRIPTOR_HEAP_TYPE type)
 	return nullptr;
 }
 
+CD3DX12_CPU_DESCRIPTOR_HANDLE DXAccess::GetCPUDescriptor(D3D12_DESCRIPTOR_HEAP_TYPE type, unsigned int index)
+{
+	switch(type)
+	{
+	case D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV:
+		return CBVHeap->GetCPUHandleAt(index);
+		break;
+
+	case D3D12_DESCRIPTOR_HEAP_TYPE_DSV:
+		return DSVHeap->GetCPUHandleAt(index);
+		break;
+
+	case D3D12_DESCRIPTOR_HEAP_TYPE_RTV:
+		return RTVHeap->GetCPUHandleAt(index);
+		break;
+	}
+
+	// Invalid type passed
+	assert(false && "Descriptor type passed isn't a valid or created type!");
+	return CD3DX12_CPU_DESCRIPTOR_HANDLE();
+}
+
+CD3DX12_GPU_DESCRIPTOR_HANDLE DXAccess::GetGPUDescriptor(D3D12_DESCRIPTOR_HEAP_TYPE type, unsigned int index)
+{
+	switch(type)
+	{
+	case D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV:
+		return CBVHeap->GetGPUHandleAt(index);
+		break;
+
+	case D3D12_DESCRIPTOR_HEAP_TYPE_DSV:
+		return DSVHeap->GetGPUHandleAt(index);
+		break;
+
+	case D3D12_DESCRIPTOR_HEAP_TYPE_RTV:
+		return RTVHeap->GetGPUHandleAt(index);
+		break;
+	}
+
+	// Invalid type passed
+	assert(false && "Descriptor type passed isn't a valid or created type!");
+	return CD3DX12_GPU_DESCRIPTOR_HANDLE();
+}
+
 Window* DXAccess::GetWindow()
 {
 	return window;

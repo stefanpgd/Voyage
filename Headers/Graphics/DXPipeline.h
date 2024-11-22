@@ -14,6 +14,7 @@ struct DXPipelineDescription
 	DXGI_FORMAT RenderTargetFormat = DXGI_FORMAT_R8G8B8A8_UNORM;
 
 	bool UsePixelShader = true;
+	bool UseSolidFill = true;
 	bool DoAlphaBlending = false;
 	bool DoBackCulling = false;
 };

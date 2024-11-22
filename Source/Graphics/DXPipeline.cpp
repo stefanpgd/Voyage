@@ -86,7 +86,7 @@ void DXPipeline::CreatePipelineState()
 
 	CD3DX12_RASTERIZER_DESC rasterizerDesc = {};
 	rasterizerDesc.CullMode = description.DoBackCulling ? D3D12_CULL_MODE_BACK : D3D12_CULL_MODE_FRONT;
-	rasterizerDesc.FillMode = D3D12_FILL_MODE_SOLID;
+	rasterizerDesc.FillMode = description.UseSolidFill ? D3D12_FILL_MODE_SOLID : D3D12_FILL_MODE_WIREFRAME;
 
 	D3D12_RENDER_TARGET_BLEND_DESC rtBlendDesc = {};
 	rtBlendDesc.BlendEnable = description.DoAlphaBlending;

@@ -1,8 +1,9 @@
 #pragma once
 #include "Graphics/RenderStage.h"
+#include "Graphics/Transform.h"
 
 class Scene;
-class Model;
+class Mesh;
 class DXPipeline;
 
 struct WaterSettings
@@ -19,12 +20,14 @@ public:
 	void RecordStage(ComPtr<ID3D12GraphicsCommandList4> commandList) override;
 
 private:
+	void GenerateWaterPlane();
 	void InitializePipeline();
 
 private:
 	Scene* activeScene;
 	WaterSettings waterSettings;
 
-	Model* waterPlane;
 	DXPipeline* waterRenderPipeline;
+	Mesh* waterTestPlane;
+	Transform waterTransform;
 };
