@@ -3,6 +3,7 @@
 
 class Scene;
 class WaterRenderStage;
+class CloudRenderStage;
 
 class VoyageProject : public Project
 {
@@ -14,5 +15,7 @@ public:
 
 private:
 	Scene* scene;
+
+	CloudRenderStage* cloudRenderStage;
 	WaterRenderStage* waterRenderStage;
 };

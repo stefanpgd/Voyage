@@ -9,6 +9,7 @@ struct Vertex
 struct VertexShaderOutput
 {
     float2 TexCoord0 : TexCoord0;
+    float3 Normal : Normal;
     float4 Position : SV_Position;
 };
 
@@ -38,16 +39,23 @@ VertexShaderOutput main(Vertex IN)
     
     // Wave equation
     float amplitude = water.amplitude;
-    float frequency = water.frequency;
-    float phase = water.phase;
-    float time = water.time;
-    float input = worldPos.x + worldPos.z;
+    float frequency = (2.0 / water.frequency);
+    float time = water.time * water.phase;
     
-    float wave = amplitude * sin(input * (2.0 / frequency) + time * phase);
-    worldPos += wave;
+    float2 direction = float2(1.0, 0.0);
+    float xz = dot(direction, worldPos.xz);
+    
+    float wave = amplitude * sin(xz * frequency + time);
+    //wave += amplitude * sin(dot(float2(1.0, 1.0), worldPos.xz) * (2.0 / frequency) * 0.6 + phase * time * 0.4);
+    //wave += amplitude * sin(dot(float2(0.5, 0.5), worldPos.xz) * (2.0 / frequency) * 5.9 + phase * time * 0.7);
+    //wave += amplitude * sin(dot(float2(1.0, 0.8), worldPos.xz) * (2.0 / frequency) * 2.8 + phase * time * 1.2);
+    
+    float2 n = frequency * amplitude * direction * cos(xz * frequency + time);
+    
+    worldPos.y += wave;
     
     OUT.Position = mul(transformData.MVP, float4(worldPos, 1.0f));
     OUT.TexCoord0 = IN.TexCoord0;
-    
+    OUT.Normal = normalize(float3(n, 0.0));
     return OUT;
 }

@@ -192,6 +192,7 @@ void DXBuffer::CreateDescriptors()
 		D3D12_UNORDERED_ACCESS_VIEW_DESC uavDescription = {};
 		uavDescription.ViewDimension = D3D12_UAV_DIMENSION_BUFFER;
 		uavDescription.Format = DXGI_FORMAT_UNKNOWN;
+
 		uavDescription.Buffer.NumElements = numberOfElements;
 		uavDescription.Buffer.StructureByteStride = elementSize;
 		uavDescription.Buffer.Flags = D3D12_BUFFER_UAV_FLAG_NONE;

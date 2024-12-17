@@ -88,6 +88,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Projects\Voyage\CloudRenderStage.cpp" />
     <ClCompile Include="Source\Graphics\DXBuffer.cpp" />
     <ClCompile Include="Source\Graphics\Camera.cpp" />
     <ClCompile Include="Source\Framework\Scene.cpp" />
@@ -125,6 +126,7 @@
     <ClCompile Include="Source\Projects\Voyage\WaterRenderStage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Headers\Projects\Voyage\CloudRenderStage.h" />
     <ClInclude Include="Headers\Graphics\DXBuffer.h" />
     <ClInclude Include="Headers\Graphics\Camera.h" />
     <ClInclude Include="Headers\Framework\Scene.h" />
@@ -184,6 +186,12 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compute</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Source\Shaders\Clouds\backgroundColor.compute.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.1</ShaderModel>
     </FxCompile>
     <FxCompile Include="Source\Shaders\computeUV.compute.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Compute</ShaderType>

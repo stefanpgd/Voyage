@@ -60,12 +60,12 @@ void WaterRenderStage::GenerateWaterPlane()
 
 	int quadIndex = 0;
 	unsigned int waterPlaneSize = 200;
+	float scale = 0.1;
 
 	for(int x = 0; x < waterPlaneSize; x++)
 	{
 		for(int y = 0; y < waterPlaneSize; y++)
 		{
-			float scale = 0.1f;
 			float xOffset = x * scale;
 			float yOffset = y * -scale;
 

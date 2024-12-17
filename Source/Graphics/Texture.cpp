@@ -5,6 +5,9 @@
 
 Texture::Texture(int width, int height, DXGI_FORMAT format) : width(width), height(height), format(format)
 {
+	// TODO: Add a system for resource state tracking, it would help with situations where we don't know the state
+	// and we can check for it (move pixel resource to UAV/copy resource etc.)
+
 	// Main purpose is allocating buffers without necessarily allocating data to it directly
 	// usually most useful for things like textures that will be manipulated by shaders (UAV)
 	AllocateTexture();
@@ -139,9 +142,10 @@ void Texture::CreateDescriptors()
 
 	// Create SRV //
 	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
-	srvDesc.Format = format;
 	srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
 	srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+	
+	srvDesc.Format = format;
 	srvDesc.Texture2D.MipLevels = 1;
 
 	srvIndex = SRVHeap->GetNextAvailableIndex();

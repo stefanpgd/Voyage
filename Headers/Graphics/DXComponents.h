@@ -7,6 +7,7 @@
 
 // Rendering Components 
 #include "Graphics/DXCommands.h"
+#include "Graphics/DXBuffer.h"
 #include "Graphics/DXRootSignature.h"
 #include "Graphics/DXPipeline.h"
 #include "Graphics/DXComputePipeline.h"
